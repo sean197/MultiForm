@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script>
+        function populate(s1,s2){
+            var s1 = document.getElementById(s1)
+            var s2 = document.getElementById(s2)
+            s2.innerHTML = "";
+            if(s1.value == "3"){
+                var optionArray = ["|",'107.25 | £107.25']
+                console.log(s1.value)
+                for(var option in optionArray){
+                var pair = optionArray[option].split("|")
+                var newOption = document.createElement("option")
+                newOption.value = pair[0];
+                newOption.innerHTML = pair[1];
+                s2.options.add(newOption);
+            } 
+            } 
+
+        }
+
+    </script>
+    <title>Document</title>
+</head>
+<body>
+
+    <section class="mt-5" >
+        <div class="container">
+  
+             
+                            <label class="my-1 mr-2" for="inlineFormCustomSelectPref">Months</label>
+                            <select class="custom-select my-1 mr-sm-2" name="months"
+                             onchange="populate('months', 'slct2')" id="months" required>
+                              <option selected>How many months...</option>
+                              <option value="3">3</option>
+                              <option value="6">6</option>
+                              <option value="12">12</option>
+                              <option value="24">24</option>
+                              <option value="36">36</option>
+                              <option value="48">48</option>
+                              <option value="60">60</option> 
+                            </select>
+              
+                            <hr>
+
+                        
+                            <h5 class="d-inline">Telephone Ansewring Service</h5> 
+                            <button type="button" class="btn btn-primary btn-sm float-right">Yes</button>
+                            <button type="button" class="btn btn-secondary btn-sm float-right">No</button>
+                            <br>
+                            <select  class="custom-select my-1 mr-sm-2" name="slct2" id="slct2"></select>
+                   
+                        <hr>
+
+                        
+                            <h5 class="d-inline">Voicemail Only Service</h5> 
+                            <button type="button" class="btn btn-primary btn-sm float-right">Yes</button>
+                            <button type="button" class="btn btn-secondary btn-sm float-right">No</button>
+                            <br>
+                            <select class="custom-select my-1 mr-sm-2" name="slct3" id="slct3"></select>
+                     
+
+        </div>
+    </section>
+</body>
+</html>

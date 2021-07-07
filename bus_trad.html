@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Business / Trading address?</title>
+  </head>
+  <script>
+       //global variables
+       var month, geograpNum, voicTelAns, busTrad, nonBus, offAdd, regAdd, profVoice,voiceMail, price;
+
+// function process data to php
+function processForm(){
+
+}
+
+// function that holds our DOM
+function _(x){
+    return document.getElementById(x);
+}
+
+// function to process stage One
+function processStageOne(){
+    month = _('months').value;
+    geograpNum = _('geoNumber').value;
+    voicTelAns = _('voicemailTeleAns').value;
+    profVoice = _('profVoice').value;
+
+    // busTrad = _('busTrad').value;
+
+
+    // validate
+    if( month,geograpNum,voicTelAns == ""){
+    _('error').innerHTML= "All fields are mandatory!";
+        return false;
+    }
+
+    // disappear 
+    _("stageOne").style.display = "none";
+    _("stageTwo").style.display = "block"
+
+    tbodyEl = _('tbodyEl');
+    tableEl = _('tbodyEl')
+
+    tableEl.addEventListener('click', onDeleteRow);
+
+    // load all user enetered information
+    tbodyEl.innerHTML += `
+    <tr>
+        <td>Business / Trading address</td>
+        <td></td>
+        <td>1</td>
+        <td>${month}</td>
+        <td>${price}</td>
+        <td><button class="deleteBtn btn">Delete</button></td>
+    </tr>
+    <tr>
+        <td class=" font-weight-bold" colspan="6">Optional</td>
+    </tr>
+    <tr>
+        <td>Geographical number</td>
+        <td></td>
+        <td>1</td>
+        <td>${month}</td>
+        <td>${price}</td>
+        <td><button class="deleteBtn btn">Delete</button></td>
+    </tr>
+    <tr>
+        <td>voicemail Only/ Telephone Answeing Service</td>
+        <td></td>
+        <td>1</td>
+        <td>${month}</td>
+        <td id="voiceTelTable">${price}</td>
+        <td><button class="deleteBtn btn">Delete</button></td>
+    </tr>
+    <tr>
+        <td>Business / trading Address</td>
+        <td></td>
+        <td>1</td>
+        <td>${month}</td>
+        <td>${price}</td>
+        <td><button class="deleteBtn btn">Delete</button></td>
+    </tr>
+    <tr>
+        <td>Professional Greeting</td>
+        <td></td>
+        <td>1</td>
+        <td>${month}</td>
+        <td>${price}</td>
+        <td><button class="deleteBtn btn">Delete</button></td>
+    </tr>
+    `;
+
+  function onDeleteRow(e){
+    if (!e.target.classList.contains('deleteBtn')){
+      return;
+    }
+    const btn = e.target;
+
+    // closest: finds the closest element 
+    btn.closest('tr').remove();
+  }
+
+  package_calc();
+
+} 
+
+
+function package_calc(){
+          month = _('months').value;
+          voiTel = _('voicemailTeleAns');
+          profVoice = _('profVoice');
+          regOffAdd = _("regOffAdd");
+          geograpNum = _("geoNumber")
+
+        // Geohraphical number
+          var selectedGeoNum = geograpNum.options[geograpNum.selectedIndex].value;
+          var selectedGeoNumYes = document.querySelector("#geoNumber > option:nth-child(3)");
+          var selectedGeoNumNo = document.querySelector("#geoNumber > option:nth-child(2)");
+
+          // Voicemail Only / Telelephone Answ Serv
+          let selectedVoiTel = voiTel.options[voiTel.selectedIndex].value;
+          let voiceMaill = document.querySelector("#voicemailTeleAns > option:nth-child(2)");
+          let telAnsw = document.querySelector("#voicemailTeleAns > option:nth-child(3)")
+
+          // Registered officers Address
+          let selectedRegOffAdd = regOffAdd.options[regOffAdd.selectedIndex].value;
+          let selectedRegOffAddYes = document.querySelector("#regOffAdd > option:nth-child(2)")
+          let selectedRegOffAddNo = document.querySelector("#regOffAdd > option:nth-child(3)")
+
+          // Professional voicemail greeting
+          const selectedProfVoice = profVoice.options[profVoice.selectedIndex].value;
+          const selectedProfVoiceYes = document.querySelector("#profVoice > option:nth-child(2)");
+          const selectedProfVoiceNo = document.querySelector("#profVoice > option:nth-child(3)");
+
+          
+          // const twoGeoNum = document.querySelector("#geoNumber > option:nth-child(2)");
+          // const oneGeoNum = document.querySelector("#geoNumber > option:nth-child(3)");
+
+          let prices = []
+          console.log(prices)
+
+          // Geographical number required
+          if( selectedGeoNum == "0207" ){
+            prices.shift();
+            prices.push(32.34)
+            console.log(prices)
+          } else if( selectedGeoNum == "0203/0204"  ){
+            prices.shift();
+            prices.push(0.00)
+          } else{
+            prices.shift(); 
+          }
+
+          let voPrices = []
+          console.log(voPrices)
+
+         var voiceMailTable =  document.querySelector("#voiceTelTable")
+
+          // Voicemail / telephone
+          if (month == 3 && selectedVoiTel == "voiOnly" ){
+            // voiceMaill.setAttribute('data-price', '5280');
+            // telAnsw.removeAttribute('data-price');
+            if(voPrices.length = 0){
+              voiceMailTable.innerHTML = 52.80;
+              voiceMail.push();
+            } else {
+              return false;
+            }
+          } else if (month == 6 && selectedVoiTel == "voiOnly"){
+
+            if(voPrices.length > 0){
+              voPrices.shift();
+              voPrices.push(88.00)
+            } else{
+              voPrices.push(88.00)
+            }
+
+          }else if (month == 12 && selectedVoiTel == "voiOnly"){
+            voiceMaill.setAttribute('data-price', '16000');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 24 && selectedVoiTel == "voiOnly"){
+            voiceMaill.setAttribute('data-price', '30400');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 36 && selectedVoiTel == "voiOnly"){
+            voiceMaill.setAttribute('data-price', '43200');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 48 && selectedVoiTel == "voiOnly"){
+            voiceMaill.setAttribute('data-price', '54400');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 60 && selectedVoiTel == "voiOnly"){
+            voiceMaill.setAttribute('data-price', '64000');
+            telAnsw.removeAttribute('data-price');
+          } else if (selectedVoiTel == "telAnsServ"){
+            voiceMaill.removeAttribute('data-price');
+            telAnsw.setAttribute('data-price', "000");
+          }else{
+            voiceMaill.removeAttribute('data-price');
+            telAnsw.removeAttribute('data-price');
+          }
+
+          // let selectedRegOffAdd = regOffAdd.options[regOffAdd.selectedIndex].value;
+          // let selectedRegOffAddYes = document.querySelector("#regOffAdd > option:nth-child(2)")
+          // let selectedRegOffAddNo = document.querySelector("#regOffAdd > option:nth-child(3)")
+
+
+          // Registered Officers address
+          if (month == 3 && selectedRegOffAdd == "yes" ){
+            selectedRegOffAddYes.setAttribute('data-price', '1320');
+            selectedRegOffAddNo.removeAttribute('data-price');
+          } else if (month == 6 && selectedRegOffAdd == "yes"){
+            selectedRegOffAddYes.setAttribute('data-price', '2200');
+            selectedRegOffAddNo.removeAttribute('data-price');
+          }else if (month == 12 && selectedRegOffAdd == "yes"){
+            selectedRegOffAddYes.setAttribute('data-price', '4000');
+            selectedRegOffAddNo.removeAttribute('data-price');
+          }else if (month == 24 && selectedRegOffAdd == "yes"){
+            selectedRegOffAddYes.setAttribute('data-price', '7600');
+            selectedRegOffAddNo.removeAttribute('data-price');
+          }else if (month == 36 && selectedRegOffAdd == "yes"){
+            selectedRegOffAddYes.setAttribute('data-price', '10800');
+            selectedRegOffAddNo.removeAttribute('data-price');
+          }else if (month == 48 && selectedRegOffAdd == "yes"){
+            selectedRegOffAddYes.setAttribute('data-price', '13600');
+            selectedRegOffAddNo.removeAttribute('data-price');
+          }else if (month == 60 && selectedRegOffAdd == "yes"){
+            selectedRegOffAddYes.setAttribute('data-price', '16000');
+            selectedRegOffAddNo.removeAttribute('data-price');
+          } else if (selectedRegOffAdd == "no"){
+            selectedRegOffAddYes.removeAttribute('data-price');
+            selectedRegOffAddNo.setAttribute('data-price', "000");
+          }else{
+            selectedRegOffAddYes.removeAttribute('data-price');
+            selectedRegOffAddNo.removeAttribute('data-price');
+          }
+
+
+          if(selectedProfVoice == "Yes"){
+            selectedProfVoiceYes.setAttribute('data-price', '3000');
+            selectedProfVoiceNo.removeAttribute('data-price');
+          } else if(selectedProfVoice == 'No'){
+            selectedProfVoiceNo.setAttribute('data-price', '000');
+            selectedProfVoiceYes.removeAttribute('data-price');
+          }else{
+            selectedProfVoiceYes.removeAttribute('data-price');
+            selectedProfVoiceNo.removeAttribute('data-price');
+          }
+
+          const items = document.querySelectorAll("[data-price]");
+          // console.log(items.getAttribute("data-price"))
+
+          var formControl, price;
+          formControl = document.querySelectorAll(".form-control");
+
+         for(var i =0; i < formControl.length; i++){
+          var x = formControl[i].getAttribute('data-price');
+          console.log(x);
+         }
+
+        }
+
+        window.addEventListener("load", package_calc);
+
+  </script>
+  <style>
+    #stageTwo{
+        display: none;
+    }
+    table{
+      text-align: center;
+    }
+</style>
+  <body>
+
+
+    <div class="container mt-5">
+        <form method="GET"  onsubmit="return processForm()" onchange="package_calc()"
+         action="">
+            <div id="stageOne">
+                <h1>Business / Trading address?</h1>
+                <br>
+                <label >How Long would you like the duration of your Virtual Office to last?</label>
+                <select id="months" class="form-control">
+                    <option value=""></option>
+                    <option value="3">3</option>
+                    <option value="6">6</option>
+                    <option value="12">12</option>
+                    <option value="24">24</option>
+                    <option value="36">36</option>
+                    <option value="48">48</option>
+                    <option value="60">60</option>
+                  </select><hr>
+    
+                  <label for="">Please choose the Geographical number required?</label>
+                  <select id="geoNumber" class="form-control">
+                    <option value=""></option>
+                    <option value="0203/0204">0203/0204</option>
+                    <option value="0207">0207</option>
+                  </select><hr>
+    
+                  <label for="">Would you like a Voicemail Only / Telephone Answering Service?</label>
+                  <select id="voicemailTeleAns" class="form-control">
+                    <option value=""></option>
+                    <option value="voiOnly">Voicemail Only</option>
+                    <option value="telAnsServ">Telephone Answering service</option>
+                  </select> 
+                 <hr>
+
+                 <label for="">Do you need a Registered Officers Address?</label>
+                 <select id="regOffAdd" class="form-control">
+                   <option value=""></option>
+                   <option value="yes">Yes</option>
+                   <option value="no">No</option>
+                 </select> 
+                <hr>
+
+                 <label for="">Do you want a Professional voicemail Greeting?</label>
+                 <select id="profVoice" class="form-control">
+                   <option value=""></option>
+                   <option value="Yes" >Yes</option>
+                   <option value="No">No</option>
+                 </select>
+                 
+                  <span id="error" class="text-danger font-weight-bold"></span>
+                  <br><br>
+                  <button type="button"
+                   id="btnStageOne" 
+                   onclick="processStageOne()" 
+                   class="btn btn-primary">Next</button>
+            </div> <br>
+    
+            <div id="stageTwo">
+              <h1>Stage Two</h1><br>
+              <table id="tableEl" class="table">
+            <thead>
+              <tr>
+                <th scope="col">Service Type</th>
+                <th scope="col">Service Name</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Service Duration</th>
+                <th scope="col">Price</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody id="tbodyEl">
+               <!-- <tr>
+                <td>Mark</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td>Otto</td>
+                <td>@mdo</td>
+                <td></td>
+              </tr>  -->
+            </tbody>
+          </table>
+    
+          <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+    
+        </form>
+          </div>
+
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>

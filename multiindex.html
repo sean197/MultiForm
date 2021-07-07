@@ -1,0 +1,652 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Hello, world!</title>
+
+    <script>
+        //global variables
+        var month, geograpNum, voicTelAns, busTrad, nonBus, offAdd, regAdd, profVoice,voiceMail;
+
+        // function process data to php
+        function processForm(){
+
+        }
+
+        // function that holds our DOM
+        function _(x){
+            return document.getElementById(x);
+        }
+
+        // function to process stage One
+        function processStageOne(){
+            month = _('months').value;
+            geograpNum = _('geoNumber').value;
+            voicTelAns = _('voicemailTeleAns').value;
+
+        // validate
+        if( month,geograpNum,voicTelAns == ""){
+          _('error').innerHTML= "All fields are mandatory!";
+            return false;
+          }
+
+        // disappear 
+        _("stageOne").style.display = "none";
+        _("stageTwo").style.display = "block"
+        } 
+
+        // function to process stage two
+        function processStageTwo(){
+
+          busTrad = _('busTrad').value;
+          nonBus = _('nonBus').value;
+          offAdd = _('officeAdd').value;
+          regAdd = _('regAdd').value;
+          profVoice = _('profVoice').value;
+
+        // hide stage Two 
+        _("stageTwo").style.display = "none";
+        // show stage three
+        _("stageThree").style.display = "block"
+
+          tbodyEl = _('tbodyEl');
+          tableEl = _('tbodyEl')
+
+
+          tableEl.addEventListener('click', onDeleteRow);
+
+          // load all user enetered information
+          tbodyEl.innerHTML += `
+          <tr>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>${month}</td>
+              <td></td>
+              <td><button class="deleteBtn btn">Delete</button></td>
+          </tr>
+          `;
+
+            function onDeleteRow(e){
+              if (!e.target.classList.contains('deleteBtn')){
+                return;
+              }
+              const btn = e.target;
+
+              // closest: finds the closest element 
+              btn.closest('tr').remove();
+            }
+
+        }
+
+        // process stage Three
+        function processStageThree(){
+
+
+        }
+        
+        function package_calc(){
+          month = _('months').value;
+          busTrad = _('busTrad');
+          nonBus = _("nonBus");
+          offAdd = _("officeAdd");
+          regAdd = _('regAdd');
+          voiTel = _('voicemailTeleAns');
+          profVoice = _('profVoice');
+
+          // Business / Trading address
+          let selectedBusTrad = busTrad.options[busTrad.selectedIndex].value
+          const selectedBusTradYes = document.querySelector("#busTrad > option:nth-child(2)");
+          const selectedBusTradNo = document.querySelector("#busTrad > option:nth-child(3)");
+
+          // Non-Business
+          let selectedNonBus = nonBus.options[nonBus.selectedIndex].value;
+          let nonBusYes = document.querySelector("#nonBus > option:nth-child(2)");
+          let nonBusNo = document.querySelector("#nonBus > option:nth-child(3)");
+
+          // Officers address services
+          let selectedOffAdd = offAdd.options[offAdd.selectedIndex].value
+          let officeAddOne = document.querySelector("#officeAdd > option:nth-child(3)");
+          let officeAddTwo = document.querySelector("#officeAdd > option:nth-child(4)");
+          let officeAddThree = document.querySelector("#officeAdd > option:nth-child(5)");
+          let officeAddFour = document.querySelector("#officeAdd > option:nth-child(6)");
+
+
+          // registered Address
+          let selectedRegAdd = regAdd.options[regAdd.selectedIndex].value;
+          let selectedRegAddYes = document.querySelector("#regAdd > option:nth-child(2)");
+          let selectedRedAddNo = document.querySelector("#regAdd > option:nth-child(3)");
+
+          
+          const geoNum =  document.querySelector("#geoNumber");
+          var selectedGeoNum = geoNum.options[geoNum.selectedIndex].value;
+
+          // Voicemail Only / Telelephone Answ Serv
+          let selectedVoiTel = voiTel.options[voiTel.selectedIndex].value;
+          let voiceMaill = document.querySelector("#voicemailTeleAns > option:nth-child(2)");
+          let telAnsw = document.querySelector("#voicemailTeleAns > option:nth-child(3)"); 
+
+          // Professional voicemail greeting
+          const selectedProfVoice = profVoice.options[profVoice.selectedIndex].value;
+          const selectedProfVoiceYes = document.querySelector("#profVoice > option:nth-child(2)");
+          const selectedProfVoiceNo = document.querySelector("#profVoice > option:nth-child(3)");
+
+          
+          const twoGeoNum = document.querySelector("#geoNumber > option:nth-child(2)");
+          const oneGeoNum = document.querySelector("#geoNumber > option:nth-child(3)");
+
+          // Do you need a buinsess / trading address
+          if(month == '3' && selectedBusTrad == "Yes" ){
+            selectedBusTradYes.setAttribute('data-price', '£32.34');
+            selectedBusTradNo.removeAttribute('data-price');
+          } else if(month == '3' && selectedBusTrad == "No" ){
+            selectedBusTradNo.setAttribute('data-price', '£0.00');
+            selectedBusTradYes.removeAttribute('data-price');
+          }
+          else if (month == '6' && selectedBusTrad == "Yes"){
+            selectedBusTradYes.setAttribute('data-price', '£53.90');
+            selectedBusTradNo.removeAttribute('data-price');
+          } else if ( month == '6' && selectedBusTrad == "No" ){
+            selectedBusTradNo.setAttribute('data-price', '£0.00');
+            selectedBusTradYes.removeAttribute('data-price');
+          }
+          else if(month == '12' && selectedBusTrad == "Yes"){
+            selectedBusTradYes.setAttribute('data-price', '£98.00');
+            selectedBusTradNo.removeAttribute('data-price');
+          } else if(month == '12' && selectedBusTrad == "No"){
+            selectedBusTradNo.setAttribute('data-price', '£0.00');
+            selectedBusTradYes.removeAttribute('data-price');
+          }else if(month == '24' && selectedBusTrad == "Yes" ){
+            selectedBusTradYes.setAttribute('data-price', '£186.20');
+            selectedBusTradNo.removeAttribute('data-price');
+          } else if(month == '24' && selectedBusTrad == "No" ){
+            selectedBusTradNo.setAttribute('data-price', '£0.00');
+            selectedBusTradYes.removeAttribute('data-price');
+          }else if (month == "36" && selectedBusTrad == "Yes" ){
+            selectedBusTradYes.setAttribute('data-price', '£264.60');
+          } else if (month == "36" && selectedBusTrad == "No" ){
+            selectedBusTradNo.setAttribute('data-price', '£0.00');
+            selectedBusTradYes.removeAttribute('data-price');
+          } else if (month == "48" && selectedBusTrad == "Yes"){
+            selectedBusTradYes.setAttribute('data-price', '£333.20');
+            selectedBusTradNo.removeAttribute('data-price');
+          } else if (month == "48" && selectedBusTrad == "No"){
+            selectedBusTradNo.setAttribute('data-price', '£0.00');
+            selectedBusTradYes.removeAttribute('data-price');
+          }  else if (month == "60" && selectedBusTrad == "Yes"){
+            selectedBusTradYes.setAttribute('data-price', '£392.00');
+            selectedBusTradNo.removeAttribute('data-price');
+          } else if (month == "60" && selectedBusTrad == "No"){
+            selectedBusTradNo.setAttribute('data-price', '£0.00');
+            selectedBusTradYes.removeAttribute('data-price');
+          }else{
+            selectedBusTradYes.removeAttribute('data-price');
+            selectedBusTradNo.removeAttribute('data-price');
+          }
+
+          // non-buisness adress
+          if(month == '3' && selectedNonBus == "Yes" ){
+            nonBusYes.setAttribute('data-price', '£32.34');
+            nonBusNo.removeAttribute('data-price');
+          } else if(month == '3' && selectedNonBus == "No" ){
+            nonBusNo.setAttribute('data-price', '£0.00');
+            nonBusYes.removeAttribute('data-price');
+          }
+          else if (month == '6' && selectedNonBus == "Yes"){
+            nonBusYes.setAttribute('data-price', '£53.90');
+            nonBusNo.removeAttribute('data-price');
+          } else if ( month == '6' && selectedNonBus == "No" ){
+            nonBusNo.setAttribute('data-price', '£0.00');
+            nonBusYes.removeAttribute('data-price');
+          }
+          else if(month == '12' && selectedNonBus == "Yes"){
+            nonBusYes.setAttribute('data-price', '£98.00');
+            nonBusNo.removeAttribute('data-price');
+          } else if(month == '12' && selectedNonBus == "No"){
+            nonBusNo.setAttribute('data-price', '£0.00');
+            nonBusYes.removeAttribute('data-price');
+          } else if(month == '24' && selectedNonBus == "Yes" ){
+            nonBusYes.setAttribute('data-price', '£186.20');
+            nonBusNo.removeAttribute('data-price');
+          } else if(month == '24' && selectedNonBus == "No" ){
+            nonBusNo.setAttribute('data-price', '£0.00');
+            nonBusYes.removeAttribute('data-price');
+          } else if (month == "36" && selectedNonBus == "Yes" ){
+            nonBusYes.setAttribute('data-price', '£264.60');
+            nonBusNo.removeAttribute('data-price');
+          } else if (month == "36" && selectedNonBus == "No" ){
+            nonBusNo.setAttribute('data-price', '£0.00');
+            nonBusYes.removeAttribute('data-price');
+          } else if (month == "48" && selectedNonBus == "Yes"){
+            nonBusYes.setAttribute('data-price', '£333.20');
+            nonBusNo.removeAttribute('data-price');
+          } else if (month == "48" && selectedNonBus == "No"){
+            nonBusNo.setAttribute('data-price', '£0.00');
+            nonBusYes.removeAttribute('data-price');
+          } else if (month == "60" && selectedNonBus == "Yes"){
+            nonBusYes.setAttribute('data-price', '£392.00');
+            nonBusNo.removeAttribute('data-price');
+          } else if (month == "60" && selectedNonBus == "No"){
+            nonBusNo.setAttribute('data-price', '£0.00');
+            nonBusYes.removeAttribute('data-price');
+          }else{
+            nonBusYes.removeAttribute('data-price');
+            nonBusNo.removeAttribute('data-price');
+          }
+
+          
+          // Officers address Service
+         
+          if(month == 3 && selectedOffAdd == 1 ){                                  // 3 months
+            officeAddOne.setAttribute('data-price', '£3.96')
+            officeAddTwo.removeAttribute('data-price')
+          officeAddThree.removeAttribute('data-price')
+          officeAddFour.removeAttribute('data-price')
+          }else if(month == 3 && selectedOffAdd == 2 ){
+            officeAddTwo.setAttribute('data-price', '£7.92')
+            officeAddThree.removeAttribute('data-price')
+          officeAddFour.removeAttribute('data-price')
+          officeAddOne.removeAttribute('data-price')
+          } else if (month == 3 && selectedOffAdd == 3){
+            officeAddThree.setAttribute('data-price', '£52.80')
+            officeAddFour.removeAttribute('data-price')
+          officeAddOne.removeAttribute('data-price')
+          officeAddTwo.removeAttribute('data-price')
+          }else if(month == 3 && selectedOffAdd == 4){
+            officeAddFour.setAttribute('data-price', '£31.68')
+            officeAddOne.removeAttribute('data-price')
+            officeAddTwo.removeAttribute('data-price')
+          officeAddThree.removeAttribute('data-price')
+          } else if(month == '6' && selectedOffAdd == 1 ){                          // 6 months
+            officeAddOne.setAttribute('data-price', '£6.60')
+            officeAddTwo.removeAttribute('data-price')
+          officeAddThree.removeAttribute('data-price')
+          officeAddFour.removeAttribute('data-price')
+          } else if(month == '6' && selectedOffAdd == 2 ){
+            officeAddTwo.setAttribute('data-price', '£7.92')
+            officeAddThree.removeAttribute('data-price')
+          officeAddFour.removeAttribute('data-price')
+          officeAddOne.removeAttribute('data-price')
+          } else if (month == '6' && selectedOffAdd == 3){
+            officeAddThree.setAttribute('data-price', '£26.40')
+            officeAddFour.removeAttribute('data-price')
+          officeAddOne.removeAttribute('data-price')
+          officeAddTwo.removeAttribute('data-price')
+          }else if(month == 6 && selectedOffAdd== 4){
+            officeAddFour.setAttribute('data-price', '£52.80')
+            officeAddOne.removeAttribute('data-price')
+            officeAddTwo.removeAttribute('data-price')
+          officeAddThree.removeAttribute('data-price')
+          }else if(month == 12 && selectedOffAdd == 1 ){                           //12 months
+            officeAddOne.setAttribute('data-price', '£12.00')
+            officeAddTwo.removeAttribute('data-price')
+          officeAddThree.removeAttribute('data-price')
+          officeAddFour.removeAttribute('data-price');
+          }else if(month == 12 && selectedOffAdd == 2 ){
+            officeAddTwo.setAttribute('data-price', '£24.00')
+            officeAddThree.removeAttribute('data-price')
+          officeAddFour.removeAttribute('data-price')
+          officeAddOne.removeAttribute('data-price');
+          } else if (month == 12 && selectedOffAdd == 3){
+            officeAddThree.setAttribute('data-price', '£36.00');
+            officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          officeAddTwo.removeAttribute('data-price');
+          }else if(month = 12 && selectedOffAdd== 4){
+            officeAddFour.setAttribute('data-price', '£48.00');
+            officeAddOne.removeAttribute('data-price');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          } else if(month == 24 && selectedOffAdd == 1 ){                           // 24 months
+            officeAddOne.setAttribute('data-price', '£45.00');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          officeAddFour.removeAttribute('data-price');
+          }else if(month == 24 && selectedOffAdd == 2 ){
+            officeAddTwo.setAttribute('data-price', '£45.60');
+            officeAddThree.removeAttribute('data-price');
+          officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          } else if (month == 24 && selectedOffAdd == 3){
+            officeAddThree.setAttribute('data-price', '£68.00');
+            officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          officeAddTwo.removeAttribute('data-price');
+          }else if(month = 24 && selectedOffAdd== 4){
+            officeAddFour.setAttribute('data-price', '£91.20');
+            officeAddOne.removeAttribute('data-price');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          } else if(month == 36 && selectedOffAdd == 1 ){                            // 36 moths
+            officeAddOne.setAttribute('data-price', '£32.40');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          officeAddFour.removeAttribute('data-price');
+          }else if(month == 36 && selectedOffAdd == 2 ){
+            officeAddTwo.setAttribute('data-price', '£64.80');
+            officeAddThree.removeAttribute('data-price');
+          officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          } else if (month == 36 && selectedOffAdd == 3){
+            officeAddThree.setAttribute('data-price', '£97.00');
+            officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          officeAddTwo.removeAttribute('data-price');
+          }else if(month == 36 && selectedOffAdd== 4){
+            officeAddFour.setAttribute('data-price', '£129.60');
+            officeAddOne.removeAttribute('data-price');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          } else if(month == 48 && selectedOffAdd == 1 ){                            // 48 months
+            officeAddOne.setAttribute('data-price', '£40.80');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          officeAddFour.removeAttribute('data-price');
+          }else if(month == 48 && selectedOffAdd == 2 ){
+            officeAddTwo.setAttribute('data-price', '£81.60');
+            officeAddThree.removeAttribute('data-price');
+          officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          } else if (month == 48 && selectedOffAdd == 3){
+            officeAddThree.setAttribute('data-price', '£122.40');
+            officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          officeAddTwo.removeAttribute('data-price');
+          }else if(month = 48 && selectedOffAdd== 4){
+            officeAddFour.setAttribute('data-price', '£163.20');
+            officeAddOne.removeAttribute('data-price');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          } else if(month == 60 && selectedOffAdd == 1 ){                            // 60 months
+            officeAddOne.setAttribute('data-price', '£48.00');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          officeAddFour.removeAttribute('data-price');
+          }else if(month == 60 && selectedOffAdd == 2 ){
+            officeAddTwo.setAttribute('data-price', '£96.00');
+            officeAddThree.removeAttribute('data-price')
+          officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          } else if (month == 60 && selectedOffAdd == 3){
+            officeAddThree.setAttribute('data-price', '£144.00');
+            officeAddFour.removeAttribute('data-price');
+          officeAddOne.removeAttribute('data-price');
+          officeAddTwo.removeAttribute('data-price');
+          }else if(month == 60 && selectedOffAdd== 4){
+            officeAddFour.setAttribute('data-price', '£192.00');
+            officeAddOne.removeAttribute('data-price');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          }else {
+            officeAddOne.removeAttribute('data-price');
+            officeAddTwo.removeAttribute('data-price');
+          officeAddThree.removeAttribute('data-price');
+          officeAddFour.removeAttribute('data-price');
+          };
+
+          // Do you need a registered address
+          if(month === 3 && selectedRegAdd == "Yes" ){
+            selectedRegAddYes.setAttribute('data-price', '£13.20');
+
+          }else if(month === 3 && selectedRegAdd == "No" ){
+            selectedRedAddNo.setAttribute('data-price', '£0.00');
+            selectedRegAddYes.removeAttribute('data-price');
+          }else if (month === 6 && selectedBusTrad == "Yes"){
+            selectedRegAddYes.setAttribute('data-price', '£22.00');
+    
+          } else if ( month === 6 && selectedRegAdd == "No" ){
+            selectedRedAddNo.setAttribute('data-price', '£0.00');
+            selectedRegAddYes.removeAttribute('data-price');
+          }else if(month == 12 && selectedRegAdd == "Yes"){
+            selectedRegAddYes.setAttribute('data-price', '£40.00');
+
+          } else if(month == 12 && selectedRegAdd == "No"){
+            selectedRedAddNo.setAttribute('data-price', '£0.00');
+            selectedRegAddYes.removeAttribute('data-price');
+          }else if(month == 24 && selectedRegAdd == "Yes" ){
+            selectedRegAddYes.setAttribute('data-price', '£76.00');
+
+          } else if(month == 24 && selectedRegAdd == "No" ){
+            selectedRedAddNo.setAttribute('data-price', '£0.00');
+            selectedRegAddYes.removeAttribute('data-price');
+          } else if (month == 36 && selectedRegAdd == "Yes" ){
+            selectedRegAddYes.setAttribute('data-price', '£108.00');
+
+          } else if (month == 36 && selectedRegAdd == "No" ){
+            selectedRedAddNo.setAttribute('data-price', '£0.00');
+            selectedRegAddYes.removeAttribute('data-price');
+          }else if (month == 48 && selectedRegAdd == "Yes"){
+            selectedRegAddYes.setAttribute('data-price', '£136.00');
+          } else if (month == 48 && selectedRegAdd == "No"){
+            selectedRedAddNo.setAttribute('data-price', '£0.00');
+            selectedRegAddYes.removeAttribute('data-price');
+          } else if (month == 60 && selectedRegAdd == "Yes"){
+            selectedRegAddYes.setAttribute('data-price', '£160.00');
+          } else if (month === 60 && selectedRegAdd == "No"){
+            selectedRedAddNo.setAttribute('data-price', '£0.00');
+            selectedRegAddYes.removeAttribute('data-price');
+          }else{
+            selectedRedAddNo.removeAttribute('data-price');
+            selectedRegAddYes.removeAttribute('data-price');
+          };
+
+          // Geographical number
+          if( selectedGeoNum ==='0207'){
+              twoGeoNum.setAttribute('data-price', '£40')
+              oneGeoNum.removeAttribute('data-price')
+          } else if (selectedGeoNum == '0203/0204'){
+          oneGeoNum.setAttribute('data-price', '£0')
+          twoGeoNum.removeAttribute('data-price')
+          }else{
+            oneGeoNum.removeAttribute('data-price')
+            twoGeoNum.removeAttribute('data-price')
+          };
+
+          // Voicemail Only
+
+          console.log(selectedVoiTel)
+          console.log(voiceMail)
+          console.log(telAnsw)
+
+          if(month == 3 && selectedVoiTel === "voiOnly"){
+            voiceMail.setAttribute('data-price', '£52.80');
+            telAnsw.removeAttribute('data-price');
+          } else if (month == 6 && selectedVoiTel == 'voiOnly'){
+            voiceMail.setAttribute('data-price', '£88.00');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 12 && selectedVoiTel == 'voiOnly'){
+            voiceMail.setAttribute('data-price', '£160.00');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 24 && selectedVoiTel == 'voiOnly'){
+            voiceMail.setAttribute('data-price', '£304.00');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 36 && selectedVoiTel == 'voiOnly'){
+            voiceMail.setAttribute('data-price', '£432.00');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 48 && selectedVoiTel == 'voiOnly'){
+            voiceMail.setAttribute('data-price', '£544.00');
+            telAnsw.removeAttribute('data-price');
+          }else if (month == 60 && selectedVoiTel == 'voiOnly'){
+            voiceMail.setAttribute('data-price', '£640.00');
+            telAnsw.removeAttribute('data-price');
+          }else if(selectedVoiTel == 'telAnsServ'){
+              telAnsw.setAttribute('data-price', '£0')
+              voiceMail.removeAttribute('data-price')
+          } else{
+            telAnsw.removeAttribute('data-price');
+           
+          }
+
+          // if(selectedVoiTel == 'Telephone Answering service'){
+          //     telAnsw.setAttribute('data-price', '£0')
+          //     voiceMail.removeAttribute('data-price')
+          // }; voiceMaill
+          // voiceMaill
+          // nonBusYes.removeAttribute('data-price')
+
+          // const selectedProfVoice = profVoice.options[profVoice.selectedIndex].value;
+          // const selectedProfVoiceYes = document.querySelector("#profVoice > option:nth-child(2)");
+          // const selectedProfVoiceNo = document.querySelector("#profVoice > option:nth-child(3)");
+
+          if(selectedProfVoice == "Yes"){
+            selectedProfVoiceYes.setAttribute('data-price', '£30.00');
+            selectedProfVoiceNo.removeAttribute('data-price');
+          } else if(selectedProfVoice == 'No'){
+            selectedProfVoiceNo.setAttribute('data-price', '£0.00');
+            selectedProfVoiceYes.removeAttribute('data-price');
+          }else{
+            selectedProfVoiceYes.removeAttribute('data-price');
+            selectedProfVoiceNo.removeAttribute('data-price');
+          }
+
+        }
+
+    </script>
+
+    <style>
+        #stageTwo, #stageThree{
+            display: none;
+        }
+        table{
+          text-align: center;
+        }
+    </style>
+
+  </head>
+  <body>
+      <div class="container mt-5">
+    <form method="GET" onsubmit="return processForm()" onchange="package_calc()"
+     action="">
+        <div id="stageOne">
+            <h1>Stage One</h1>
+            <br>
+            <label >How Long would you like the duration of your Virtual Office to last?</label>
+            <select id="months" class="form-control">
+                <option value=""></option>
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="36">36</option>
+                <option value="48">48</option>
+                <option value="60">60</option>
+              </select><hr>
+
+              <label for="">Please choose the Geographical number required?</label>
+              <select id="geoNumber" class="form-control">
+                <option value=""></option>
+                <option value="0203/0204">0203/0204</option>
+                <option value="0207">0207</option>
+              </select><hr>
+
+              <label for="">Would you like a Voicemail Only / Telephone Answering Service?</label>
+              <select id="voicemailTeleAns" class="form-control">
+                <option value=""></option>
+                <option value="voiOnly">Voicemail Only</option>
+                <option value="telAnsServ">Telephone Answering service</option>
+              </select> 
+             <hr>
+              <span id="error" class="text-danger"></span>
+              <br><br>
+              <button type="button"
+               id="btnStageOne" 
+               onclick="processStageOne()" 
+               class="btn btn-primary">Next</button>
+          </div> <br>
+
+        <div id="stageTwo">
+                <h1>Stage Two</h1><br>
+          <label for="">Do you need a Business / Trading  address?</label>
+                <select id="busTrad" class="form-control">
+                    <option value=""></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                  <hr>
+
+                  <label for="">Do you need a Non-Business address?</label>
+                  <select id="nonBus" class="form-control">
+                    <option value=""></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+                  <hr>
+
+                  <label for="">Do you need any Officers address services?</label>
+                  <select id="officeAdd" class="form-control">
+                    <option value=""></option>
+                    <option value="0">None</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                  </select>    
+                  <hr>
+
+                  <label for="">Do you need a Registered address?</label>
+                  <select id="regAdd" class="form-control">
+                    <option value=""></option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                  </select>
+
+                  <hr>
+
+                  <label for="">Do you want a Professional voicemail Greeting?</label>
+                  <select id="profVoice" class="form-control">
+                    <option value=""></option>
+                    <option value="Yes" >Yes</option>
+                    <option value="No">No</option>
+                  </select>
+
+                  <hr>
+
+                  <button id="btnStageTwo" 
+                  onclick="processStageTwo()"
+                   type="button"
+                    class="btn btn-primary">Next</button>
+        </div><br>
+
+        <div id="stageThree">
+          <h1>Stage Three</h1><br>
+          <table id="tableEl" class="table">
+        <thead>
+          <tr>
+            <th scope="col">Service Type</th>
+            <th scope="col">Service Name</th>
+            <th scope="col">Quantity</th>
+            <th scope="col">Service Duration</th>
+            <th scope="col">Price</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody id="tbodyEl">
+          <!-- <tr>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+          </tr> -->
+        </tbody>
+      </table>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+
+    </form>
+      </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+</html>
